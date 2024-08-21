@@ -10,5 +10,10 @@
     "filter_source":{
         "oggdmx" : "dmx_ogg.c",
         "vorbisdec" : "dec_vorbis.c"
-    }
+    },
+    "Format": ["Vorbis"],
+    "extension":{
+      "ogg" : "audio"
+    },
+    "licence_required":false
 }
