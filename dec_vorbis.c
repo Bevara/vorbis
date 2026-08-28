@@ -28,6 +28,8 @@
 #include <gpac/constants.h>
 #include <gpac/bitstream.h>
 
+#include "filter_register.h"
+
 #ifdef GPAC_HAS_VORBIS
 
 #include <vorbis/codec.h>
@@ -178,7 +180,7 @@ static GFINLINE void vorbis_to_intern(u32 samples, Float **pcm, char *buf, u32 c
 		ogg_int16_t *ptr;
 		ptr = &data[i];
 		if (!ptr) break;
-		
+
 		if (channels>2) {
 			/*center is third in gpac*/
 			if (i==1) ptr = &data[2];
@@ -323,4 +325,7 @@ const GF_FilterRegister * EMSCRIPTEN_KEEPALIVE dynCall_vorbisdec_register(GF_Fil
 #endif
 }
 
-
+__attribute__((constructor))
+void register_this_side_module(void) {
+    gf_filter_auto_register("vorbisdec", dynCall_vorbisdec_register);
+}
