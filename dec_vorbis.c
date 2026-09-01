@@ -316,7 +316,7 @@ GF_FilterRegister VorbisDecRegister = {
 
 #endif
 
-const GF_FilterRegister * EMSCRIPTEN_KEEPALIVE dynCall_vorbisdec_register(GF_FilterSession *session)
+const GF_FilterRegister * EMSCRIPTEN_KEEPALIVE vorbisdec_register(GF_FilterSession *session)
 {
 #ifdef GPAC_HAS_VORBIS
 	return &VorbisDecRegister;
@@ -327,5 +327,5 @@ const GF_FilterRegister * EMSCRIPTEN_KEEPALIVE dynCall_vorbisdec_register(GF_Fil
 
 __attribute__((constructor))
 void register_this_side_module(void) {
-    gf_filter_auto_register("vorbisdec", dynCall_vorbisdec_register);
+    gf_filter_auto_register("vorbisdec", vorbisdec_register);
 }

@@ -991,7 +991,7 @@ GF_FilterRegister OGGDmxRegister = {
 
 #endif // !defined(GPAC_DISABLE_AV_PARSERS) && !defined(GPAC_DISABLE_OGG)
 
-const GF_FilterRegister * EMSCRIPTEN_KEEPALIVE dynCall_oggdmx_register(GF_FilterSession *session)
+const GF_FilterRegister * EMSCRIPTEN_KEEPALIVE oggdmx_register(GF_FilterSession *session)
 {
 #if !defined(GPAC_DISABLE_AV_PARSERS) && !defined(GPAC_DISABLE_OGG)
 	return &OGGDmxRegister;
@@ -1004,5 +1004,5 @@ const GF_FilterRegister * EMSCRIPTEN_KEEPALIVE dynCall_oggdmx_register(GF_Filter
 
 __attribute__((constructor))
 void register_this_side_module(void) {
-    gf_filter_auto_register("oggdmx", dynCall_oggdmx_register);
+    gf_filter_auto_register("oggdmx", oggdmx_register);
 }
