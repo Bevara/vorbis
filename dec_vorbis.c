@@ -2,7 +2,7 @@
  *			GPAC - Multimedia Framework C SDK
  *
  *			Authors: Jean Le Feuvre
- *			Copyright (c) Telecom ParisTech 2000-2023
+ *			Copyright (c) Telecom ParisTech 2000-2024
  *					All rights reserved
  *
  *  This file is part of GPAC / XIPH Vorbis decoder filter
@@ -27,8 +27,6 @@
 #include <gpac/filters.h>
 #include <gpac/constants.h>
 #include <gpac/bitstream.h>
-
-#include "filter_register.h"
 
 #ifdef GPAC_HAS_VORBIS
 
@@ -180,7 +178,7 @@ static GFINLINE void vorbis_to_intern(u32 samples, Float **pcm, char *buf, u32 c
 		ogg_int16_t *ptr;
 		ptr = &data[i];
 		if (!ptr) break;
-
+		
 		if (channels>2) {
 			/*center is third in gpac*/
 			if (i==1) ptr = &data[2];
@@ -312,6 +310,7 @@ GF_FilterRegister VorbisDecRegister = {
 	.finalize = vorbisdec_finalize,
 	.configure_pid = vorbisdec_configure_pid,
 	.process = vorbisdec_process,
+	.hint_class_type = GF_FS_CLASS_DECODER
 };
 
 #endif
@@ -325,6 +324,10 @@ const GF_FilterRegister * EMSCRIPTEN_KEEPALIVE vorbisdec_register(GF_FilterSessi
 #endif
 }
 
+
+
+/*Bevara: side modules register their own filters at load time.*/
+#include "filter_register.h"
 __attribute__((constructor))
 void register_this_side_module(void) {
     gf_filter_auto_register("vorbisdec", vorbisdec_register);
