@@ -3,6 +3,8 @@ project(Filters)
 
 include(filters.cmake)
 
+add_definitions(-fpic)
+
 SET(VORBIS_SRC
         ${CMAKE_CURRENT_SOURCE_DIR}/dec_vorbis.c
 )
