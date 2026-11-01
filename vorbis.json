@@ -1,6 +1,6 @@
 {
     "name": "vorbis",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "vorbis decoder",
     "filters":["oggdmx","vorbisdec"],
     "help": "This filter decodes Ogg and Vorbis streams through libogg and libvorbis library.",
@@ -16,7 +16,7 @@
     "extension":{
       "ogg" : "audio"
     },
-    "using": ["solver_minimal_1", "solver_1"],
+    "using": ["mm_solver_minimal_1.0.1", "mm_solver_1.0.1"],
     "patents": {
         "status": "royalty-free",
         "note": "Vorbis",
